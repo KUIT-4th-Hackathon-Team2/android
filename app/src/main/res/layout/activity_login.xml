@@ -111,6 +111,7 @@
         android:text="계정 정보가 올바르지 않습니다."
         android:textColor="#3D4A3D"
         android:textSize="13sp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_login_password" />
