@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kuit_4th_hackathon_team2_android.admin.model.LentalData
 import com.example.kuit_4th_hackathon_team2_android.databinding.ItemAdminLentalBinding
 
-class AdminLentalAdapter (private val itemList: List<LentalData>) :
+class AdminLentalAdapter (private val itemList: List<LentalData>,
+    private val onClickConfirm : (LentalData) -> Unit) :
     RecyclerView.Adapter<AdminLentalAdapter.ItemViewHolder>() {
     inner class ItemViewHolder(
         private val binding: ItemAdminLentalBinding
@@ -17,9 +18,7 @@ class AdminLentalAdapter (private val itemList: List<LentalData>) :
             binding.tvAdminLentalDate.text = item.registerTime
 
             binding.btnAdminLental.setOnClickListener {
-
-                //TODO 대여 확정 - 서버와 통신
-                //확정 버튼을 누르면 -> 메세지 보냄 -> 명단 다시 받아 와서 그리기
+                onClickConfirm(item)
             }
         }
     }

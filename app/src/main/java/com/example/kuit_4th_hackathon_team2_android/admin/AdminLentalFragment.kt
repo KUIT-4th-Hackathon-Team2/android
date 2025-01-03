@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kuit_4th_hackathon_team2_android.Retrofit.service.AdminRentalService
-import com.example.kuit_4th_hackathon_team2_android.retrofit.RetrofitObject
+
+import com.example.kuit_4th_hackathon_team2_android.retrofit.service.AdminRentalService
+
 import com.example.kuit_4th_hackathon_team2_android.admin.model.LentalData
 import com.example.kuit_4th_hackathon_team2_android.databinding.FragmentAdminLentalBinding
+import com.example.kuit_4th_hackathon_team2_android.retrofit.RetrofitObject
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -58,7 +60,9 @@ class AdminLentalFragment : Fragment() {
     }*/
 
     private fun initAdapter() {
-        lentalAdapter = AdminLentalAdapter(lentalDataList)
+        lentalAdapter = AdminLentalAdapter(lentalDataList) { item ->
+            confirmItem(item)
+        }
         with(lentalBinding.rvAdminLental) {
             adapter = lentalAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -95,6 +99,7 @@ class AdminLentalFragment : Fragment() {
             }
 
         })
+
     }
 
     private fun showRentalInfo(rentalList : List<LentalData>) {
@@ -106,6 +111,27 @@ class AdminLentalFragment : Fragment() {
         }else {
             lentalAdapter.notifyDataSetChanged()
         }
+    }
+
+    private fun confirmItem(item : LentalData) {
+        val service = RetrofitObject.retrofit.create(AdminRentalService::class.java)
+        val call = service.confirmreservation()
+
+        call.enqueue(object : Callback<Unit> {
+            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                if (response.isSuccessful) {
+                    Log.d("delete success", "Item deleted successfully")
+                    showRentalInfo(lentalDataList) // UI 업데이트
+                } else {
+                    Log.e("delete fail", "Failed to delete item with code: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<Unit>, t: Throwable) {
+                Log.e("delete failure", "Failed to delete item: ${t.message}")
+            }
+
+        })
     }
 
 
