@@ -9,6 +9,10 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.kuit_4th_hackathon_team2_android.databinding.ActivitySignUpBinding
+import com.example.kuit_4th_hackathon_team2_android.login.model.ResponseData
+import com.example.kuit_4th_hackathon_team2_android.login.model.UserData
+import com.example.kuit_4th_hackathon_team2_android.retrofit.RetrofitObject
+import com.example.kuit_4th_hackathon_team2_android.retrofit.service.LoginService
 
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -17,7 +21,7 @@ import retrofit2.Response
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
     private var canSignup = false
-    private var isAdmin = "admin"
+    private var isAdmin = "ADMIN"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,83 +76,50 @@ class SignUpActivity : AppCompatActivity() {
             } else {
                 binding.tvSignUpAuthorityWarning.visibility = View.INVISIBLE
                 if (binding.cbSignUpUser.isChecked) {
-                    isAdmin = "user"
+                    isAdmin = "USER"
                 } else {
-                    isAdmin = "admin"
+                    isAdmin = "ADMIN"
                 }
             }
-
             if (canSignup) {
                 // 서버로 요청날려서 요청성공했는지 확인
-//                initPostData()
-                finish()
+                initPostData()
             }
         }
     }
 
-//    private fun initPostData() {
-//        val newUserData = UserData(
-//            binding.etSignUpUserName.text.toString(),
-//            binding.etSignUpId.text.toString(),
-//            binding.etSignUpPassword.text.toString(),
-//            isAdmin
-//        )
-//        val test = LoginResponseData(
-//            "1",1,"1","1"
-//        )
-////        val service = RetrofitObject.retrofit.create(LoginService::class.java)
-//        val service = ServicePool.loginService
-//        val call = service.postUser(test)
-//        call.enqueue(
-//            object : retrofit2.Callback<LoginResponseData> {
-//                override fun onResponse(
-//                    call: retrofit2.Call<LoginResponseData>,
-//                    response: Response<LoginResponseData>
-//                ) {
-//                    if (response.isSuccessful) {
-//                        val userLoginData = response.body()
-//                        if (userLoginData != null) {
-//                            Log.d("성공", "잘들어감")
-//                            finish()
-//                        } else {
-//                            Log.d("실패", "아이디 중복?")
-//                        }
-//                    } else {
-//                        Log.d("실패", "상테코드 ${response.code()}")
-//                    }
-//                }
-//
-//                override fun onFailure(call: retrofit2.Call<LoginResponseData>, t: Throwable) {
-//                    Log.d("실패", "완벽한 실패: ${t.toString()}")
-//                    t.printStackTrace()
-//                }
-//            }
-//        )
-//        val call2 = service.getUser()
-//        call2.enqueue(
-//            object : retrofit2.Callback<LoginResponseData> {
-//                override fun onResponse(
-//                    call: Call<LoginResponseData>,
-//                    response: Response<LoginResponseData>
-//                ) {
-//                    if (response.isSuccessful) {
-//                        val userLoginData = response.body()
-//                        if (userLoginData != null) {
-//                            Log.d("성공", "잘들어감")
-//                        } else {
-//                            Log.d("실패", "아이디 중복?")
-//                        }
-//                    } else {
-//                        Log.d("실패", "상테코드 ${response.code()}")
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<LoginResponseData>, t: Throwable) {
-//                    Log.d("실패", "완벽한 실패: ${t.toString()}")
-//                }
-//            }
-//        )
-//    }
+    private fun initPostData() {
+        val newUserData = UserData(
+            binding.etSignUpUserName.text.toString(),
+            binding.etSignUpId.text.toString().toLong(),
+            binding.etSignUpPassword.text.toString(),
+            isAdmin
+        )
+        val service = RetrofitObject.retrofit.create(LoginService::class.java)
+        val call = service.postUser(newUserData)
+        call.enqueue(
+            object : retrofit2.Callback<ResponseData> {
+                override fun onResponse(
+                    call: retrofit2.Call<ResponseData>,
+                    response: Response<ResponseData>
+                ) {
+                    if (response.isSuccessful) {
+                        val userLoginData = response.body()
+                        finish()
+                    } else {
+                        Log.d("실패", "상태코드 ${response.code()}")
+                        binding.tvSignUpIdWarning.visibility= View.VISIBLE
+                    }
+                }
+
+                override fun onFailure(call: retrofit2.Call<ResponseData>, t: Throwable) {
+                    Log.d("실패", "안됌")
+                    binding.tvSignUpIdWarning.visibility=View.VISIBLE
+                }
+            }
+        )
+
+    }
 
         private fun initCheckingCheckBox() {
             binding.cbSignUpAdmin.setOnCheckedChangeListener { _, isChecked ->

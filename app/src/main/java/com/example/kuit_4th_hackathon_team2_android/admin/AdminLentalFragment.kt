@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kuit_4th_hackathon_team2_android.retrofit.RetrofitObject
-import com.example.kuit_4th_hackathon_team2_android.retrofit.Service.AdminRentalService
+import com.example.kuit_4th_hackathon_team2_android.retrofit.service.AdminRentalService
 import com.example.kuit_4th_hackathon_team2_android.admin.model.LentalData
 import com.example.kuit_4th_hackathon_team2_android.databinding.FragmentAdminLentalBinding
 
