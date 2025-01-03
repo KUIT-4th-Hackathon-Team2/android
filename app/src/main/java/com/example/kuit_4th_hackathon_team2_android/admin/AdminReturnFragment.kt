@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kuit_4th_hackathon_team2_android.Retrofit.service.AdminReturnService
 import com.example.kuit_4th_hackathon_team2_android.admin.model.ReservationData
-import com.example.kuit_4th_hackathon_team2_android.admin.model.ReturnData
 import com.example.kuit_4th_hackathon_team2_android.databinding.FragmentAdminReturnBinding
 import com.example.kuit_4th_hackathon_team2_android.retrofit.RetrofitObject
 import retrofit2.Call
@@ -100,6 +99,7 @@ class AdminReturnFragment : Fragment() {
                     val returnResponse = response.body()
                     Log.d("delete success", "Item deleted successfully")
                     if(!returnResponse.isNullOrEmpty()){
+                        fetchReturnData()
                     showReturnInfo(returnResponse) // UI 업데이트
                         }
                 } else {

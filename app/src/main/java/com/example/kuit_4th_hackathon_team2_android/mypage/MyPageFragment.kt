@@ -57,10 +57,12 @@ class MyPageFragment : Fragment() {
                 if (response.isSuccessful) {
                     val rentalResponse = response.body()
 
-                    if (!rentalResponse.isNullOrEmpty()) {
+                    if (!rentalResponse.isNullOrEmpty()) {//
+                        binding.tvMyPageNoBorrow.visibility=View.GONE
                         showMyPageInfo(rentalResponse)
                     } else {
                         Log.e("empty value", "No data received from server")
+                            binding.tvMyPageNoBorrow.visibility=View.VISIBLE
                     }
                 } else {
                     Log.e("server response fail", "Server response failed with code: ${response.code()}")
