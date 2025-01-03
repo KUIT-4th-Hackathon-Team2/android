@@ -1,4 +1,4 @@
-package com.example.kuit_4th_hackathon_team2_android.reservation
+package com.example.kuit_4th_hackathon_team2_android.reservation.reservation
 
 data class ReservationData(
     val id : String,

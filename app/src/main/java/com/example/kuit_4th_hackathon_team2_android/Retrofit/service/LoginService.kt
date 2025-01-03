@@ -1,4 +1,5 @@
-package com.example.kuit_4th_hackathon_team2_android.Retrofit.service
+package com.example.kuit_4th_hackathon_team2_android.retrofit.Service
+
 
 import com.example.kuit_4th_hackathon_team2_android.login.model.LoginData
 import com.example.kuit_4th_hackathon_team2_android.login.model.ResponseData
