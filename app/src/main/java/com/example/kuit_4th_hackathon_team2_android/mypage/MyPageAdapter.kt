@@ -20,7 +20,7 @@ class MyPageAdapter(private val itemList: List<MyPageData>) :
         @RequiresApi(Build.VERSION_CODES.O)
         fun bind(item: MyPageData) {
             binding.tvItemMyPageName.text = item.productName
-            binding.tvItemMyPageReturnDate.text = item.expirationDate
+            binding.tvItemMyPageReturnDateNumber.text = item.expirationDate
             val remainingDays = calculateRemainingDays(item.rentalTime, item.expirationDate)
             binding.tvItemRemainTime.text = remainingDays.toString()
         }

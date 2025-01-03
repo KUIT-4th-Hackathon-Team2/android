@@ -7,18 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kuit_4th_hackathon_team2_android.Retrofit.RetrofitObject
+import com.example.kuit_4th_hackathon_team2_android.Retrofit.service.AdminProductService
 import com.example.kuit_4th_hackathon_team2_android.admin.model.ProductData
 import com.example.kuit_4th_hackathon_team2_android.admin.model.ReservationData
 import com.example.kuit_4th_hackathon_team2_android.databinding.FragmentAdminProductBinding
 
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class AdminProductFragment : Fragment() {
 
     private lateinit var productBinding: FragmentAdminProductBinding
     private lateinit var productAdapter: AdminProductAdapter
-    private var productDataList = ArrayList<ReservationData>()
+    private var productDataList = ArrayList<ProductData>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,11 +31,62 @@ class AdminProductFragment : Fragment() {
 
         productBinding = FragmentAdminProductBinding.inflate(inflater,container,false)
         //initProductData()
-        //initLentalAdapter()
-
-        //fetchReservationInfo()
+        initAdapter()
+        fetchReservationInfo()
 
         return productBinding.root
+    }
+
+    private fun initAdapter() {
+        productAdapter = AdminProductAdapter(productDataList)
+
+        with(productBinding.rvAdminProductList) {
+            adapter = productAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+    }
+
+    private fun fetchReservationInfo() {
+        val service = RetrofitObject.retrofit.create(AdminProductService::class.java)
+        val call = service.getProductItem()
+
+        call.enqueue(object : Callback<List<ProductData>> {
+            override fun onResponse(
+                call: Call<List<ProductData>>,
+                response: Response<List<ProductData>>
+            ) {
+                if (response.isSuccessful) {
+                    val returnResponse = response.body()
+
+                    if (!returnResponse.isNullOrEmpty()) {
+                        showReturnInfo(returnResponse)
+                    } else {
+                        Log.e("empty value", "No data received from server")
+                    }
+                } else {
+                    Log.e(
+                        "server response fail",
+                        "Server response failed with code: ${response.code()}"
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<List<ProductData>>, t: Throwable) {
+                Log.e("delete failure", "Failed to delete item: ${t.message}")
+            }
+
+        })
+    }
+
+    private fun showReturnInfo(returnList: List<ProductData>) {
+        productDataList.clear()
+        productDataList.addAll(returnList)
+
+        if (!::productAdapter.isInitialized) {
+            initAdapter()
+        } else {
+            productAdapter.notifyDataSetChanged()
+        }
     }
 
 /*    private fun initProductData() {
