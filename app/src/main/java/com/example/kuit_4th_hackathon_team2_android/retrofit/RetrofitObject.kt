@@ -1,8 +1,6 @@
-package com.example.kuit_4th_hackathon_team2_android.Retrofit
+package com.example.kuit_4th_hackathon_team2_android.retrofit
 
 import android.util.Log
-import com.example.kuit_4th_hackathon_team2_android.BuildConfig.BASE_URL
-import com.example.kuit_4th_hackathon_team2_android.retrofit.LoginInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

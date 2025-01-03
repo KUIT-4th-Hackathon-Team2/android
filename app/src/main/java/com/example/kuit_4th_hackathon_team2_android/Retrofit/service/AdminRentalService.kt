@@ -1,4 +1,4 @@
-package com.example.kuit_4th_hackathon_team2_android.Retrofit.service
+package com.example.kuit_4th_hackathon_team2_android.retrofit.service
 
 import com.example.kuit_4th_hackathon_team2_android.admin.model.LentalData
 import retrofit2.Call

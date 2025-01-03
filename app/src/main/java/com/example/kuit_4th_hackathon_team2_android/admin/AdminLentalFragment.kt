@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kuit_4th_hackathon_team2_android.Retrofit.RetrofitObject
-import com.example.kuit_4th_hackathon_team2_android.Retrofit.service.AdminRentalService
+
+import com.example.kuit_4th_hackathon_team2_android.retrofit.service.AdminRentalService
+
 import com.example.kuit_4th_hackathon_team2_android.admin.model.LentalData
 import com.example.kuit_4th_hackathon_team2_android.databinding.FragmentAdminLentalBinding
+import com.example.kuit_4th_hackathon_team2_android.retrofit.RetrofitObject
 
 import retrofit2.Call
 import retrofit2.Callback
