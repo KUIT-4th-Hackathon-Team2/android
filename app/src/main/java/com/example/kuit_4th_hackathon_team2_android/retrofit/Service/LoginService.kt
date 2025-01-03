@@ -2,7 +2,7 @@ package com.example.kuit_4th_hackathon_team2_android.retrofit.Service
 
 import com.example.kuit_4th_hackathon_team2_android.retrofit.LoginResponseData
 import com.example.kuit_4th_hackathon_team2_android.retrofit.UserData
-import com.example.kuit_4th_hackathon_team2_android.retrofit.loginRequestData
+import com.example.kuit_4th_hackathon_team2_android.retrofit.LoginRequestData
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -18,9 +18,9 @@ interface LoginService {
 
     @POST("login")
     fun login(
-        @Body loginRequest: loginRequestData
+        @Body loginRequest: LoginRequestData
     ): Call<LoginResponseData>
-    @GET("user")
 
+    @GET("user")
     fun getUser(): Call<LoginResponseData>
 }

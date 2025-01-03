@@ -12,13 +12,13 @@ import com.example.kuit_4th_hackathon_team2_android.home.HomeActivity
 import com.example.kuit_4th_hackathon_team2_android.retrofit.LoginResponseData
 import com.example.kuit_4th_hackathon_team2_android.retrofit.RetrofitObject
 import com.example.kuit_4th_hackathon_team2_android.retrofit.Service.LoginService
-import com.example.kuit_4th_hackathon_team2_android.retrofit.loginRequestData
+import com.example.kuit_4th_hackathon_team2_android.retrofit.LoginRequestData
 import com.example.kuit_4th_hackathon_team2_android.signup.SignUpActivity
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private var canLogin = false
+    private var canLogin = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnLoginSignIn.setOnClickListener {
-            checkingAccount()
+//            checkingAccount()
             if (canLogin) {
                 val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
@@ -45,10 +45,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkingAccount() {
-        val id = binding.etLoginId.text.toString().toLong()
-        val password = binding.etLoginPassword.toString()
-        val service = RetrofitObject.retrofit.create(LoginService::class.java)
-        val call = service.login(loginRequestData(id, password))
+//        val id = binding.etLoginId.text.toString()
+//        val password = binding.etLoginPassword.toString()
+//        val service = RetrofitObject.retrofit.create(LoginService::class.java)
+//        val call = service.login(LoginRequestData(id, password))
 
 
 

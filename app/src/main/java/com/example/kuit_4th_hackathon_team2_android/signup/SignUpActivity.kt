@@ -84,75 +84,75 @@ class SignUpActivity : AppCompatActivity() {
 
             if (canSignup) {
                 // 서버로 요청날려서 요청성공했는지 확인
-                initPostData()
+//                initPostData()
                 finish()
             }
         }
     }
 
-    private fun initPostData() {
-        val newUserData = UserData(
-            binding.etSignUpUserName.text.toString(),
-            binding.etSignUpId.text.toString(),
-            binding.etSignUpPassword.text.toString(),
-            isAdmin
-        )
-        val test = LoginResponseData(
-            "1",1,"1","1"
-        )
-//        val service = RetrofitObject.retrofit.create(LoginService::class.java)
-        val service = ServicePool.loginService
-        val call = service.postUser(test)
-        call.enqueue(
-            object : retrofit2.Callback<LoginResponseData> {
-                override fun onResponse(
-                    call: retrofit2.Call<LoginResponseData>,
-                    response: Response<LoginResponseData>
-                ) {
-                    if (response.isSuccessful) {
-                        val userLoginData = response.body()
-                        if (userLoginData != null) {
-                            Log.d("성공", "잘들어감")
-                            finish()
-                        } else {
-                            Log.d("실패", "아이디 중복?")
-                        }
-                    } else {
-                        Log.d("실패", "상테코드 ${response.code()}")
-                    }
-                }
-
-                override fun onFailure(call: retrofit2.Call<LoginResponseData>, t: Throwable) {
-                    Log.d("실패", "완벽한 실패: ${t.toString()}")
-                    t.printStackTrace()
-                }
-            }
-        )
-        val call2 = service.getUser()
-        call2.enqueue(
-            object : retrofit2.Callback<LoginResponseData> {
-                override fun onResponse(
-                    call: Call<LoginResponseData>,
-                    response: Response<LoginResponseData>
-                ) {
-                    if (response.isSuccessful) {
-                        val userLoginData = response.body()
-                        if (userLoginData != null) {
-                            Log.d("성공", "잘들어감")
-                        } else {
-                            Log.d("실패", "아이디 중복?")
-                        }
-                    } else {
-                        Log.d("실패", "상테코드 ${response.code()}")
-                    }
-                }
-
-                override fun onFailure(call: Call<LoginResponseData>, t: Throwable) {
-                    Log.d("실패", "완벽한 실패: ${t.toString()}")
-                }
-            }
-        )
-    }
+//    private fun initPostData() {
+//        val newUserData = UserData(
+//            binding.etSignUpUserName.text.toString(),
+//            binding.etSignUpId.text.toString(),
+//            binding.etSignUpPassword.text.toString(),
+//            isAdmin
+//        )
+//        val test = LoginResponseData(
+//            "1",1,"1","1"
+//        )
+////        val service = RetrofitObject.retrofit.create(LoginService::class.java)
+//        val service = ServicePool.loginService
+//        val call = service.postUser(test)
+//        call.enqueue(
+//            object : retrofit2.Callback<LoginResponseData> {
+//                override fun onResponse(
+//                    call: retrofit2.Call<LoginResponseData>,
+//                    response: Response<LoginResponseData>
+//                ) {
+//                    if (response.isSuccessful) {
+//                        val userLoginData = response.body()
+//                        if (userLoginData != null) {
+//                            Log.d("성공", "잘들어감")
+//                            finish()
+//                        } else {
+//                            Log.d("실패", "아이디 중복?")
+//                        }
+//                    } else {
+//                        Log.d("실패", "상테코드 ${response.code()}")
+//                    }
+//                }
+//
+//                override fun onFailure(call: retrofit2.Call<LoginResponseData>, t: Throwable) {
+//                    Log.d("실패", "완벽한 실패: ${t.toString()}")
+//                    t.printStackTrace()
+//                }
+//            }
+//        )
+//        val call2 = service.getUser()
+//        call2.enqueue(
+//            object : retrofit2.Callback<LoginResponseData> {
+//                override fun onResponse(
+//                    call: Call<LoginResponseData>,
+//                    response: Response<LoginResponseData>
+//                ) {
+//                    if (response.isSuccessful) {
+//                        val userLoginData = response.body()
+//                        if (userLoginData != null) {
+//                            Log.d("성공", "잘들어감")
+//                        } else {
+//                            Log.d("실패", "아이디 중복?")
+//                        }
+//                    } else {
+//                        Log.d("실패", "상테코드 ${response.code()}")
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<LoginResponseData>, t: Throwable) {
+//                    Log.d("실패", "완벽한 실패: ${t.toString()}")
+//                }
+//            }
+//        )
+//    }
 
         private fun initCheckingCheckBox() {
             binding.cbSignUpAdmin.setOnCheckedChangeListener { _, isChecked ->
