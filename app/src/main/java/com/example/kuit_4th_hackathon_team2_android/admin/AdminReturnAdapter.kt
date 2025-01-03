@@ -22,6 +22,7 @@ class AdminReturnAdapter(
 
             binding.btnAdminReturn.setOnClickListener {
                 onDeleteClick(item)
+
             }
         }
     }
