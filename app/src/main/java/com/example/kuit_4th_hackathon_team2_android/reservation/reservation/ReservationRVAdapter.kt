@@ -8,16 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kuit_4th_hackathon_team2_android.databinding.ItemUserReservationBinding
 
 class ReservationRVAdapter(
-    private val context : Context,
-    private val items : ArrayList<ReservationData>,
+    private val items : List<ReservationData>,
     private val reservationClickListener : (ReservationData) -> Unit = {}
-
 ) : RecyclerView.Adapter<ReservationRVAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding : ItemUserReservationBinding) :
             RecyclerView.ViewHolder(binding.root) {
                 fun bind(item : ReservationData) {
-                    binding.tvItemName.text = item.productName
+                    binding.tvItemName.text = item.name
                     val remainNumber = item.remainNumber
                     val rentalPeriod = item.rentalPeriod
                     binding.tvItemInfo.text = "대여 가능 수량 : $remainNumber / $rentalPeriod"
@@ -49,7 +47,7 @@ class ReservationRVAdapter(
             }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemUserReservationBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = ItemUserReservationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
