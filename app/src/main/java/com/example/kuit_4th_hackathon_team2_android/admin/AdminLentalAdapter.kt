@@ -12,9 +12,9 @@ class AdminLentalAdapter (private val itemList: List<LentalData>) :
         private val binding: ItemAdminLentalBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: LentalData) {
-            binding.tvAdminLentalItemName.text = item.product
-            binding.tvAdminLentalStudent.text = item.stdinfo
-            binding.tvAdminLentalDate.text = item.date
+            binding.tvAdminLentalItemName.text = item.productName
+            binding.tvAdminLentalStudent.text = item.userName+" ("+item.studentNum+")"
+            binding.tvAdminLentalDate.text = item.registerTime
 
             binding.btnAdminLental.setOnClickListener {
 

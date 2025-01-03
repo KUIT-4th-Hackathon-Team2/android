@@ -22,13 +22,13 @@ class AdminReturnFragment : Fragment() {
 
 
         returnBinding = FragmentAdminReturnBinding.inflate(inflater,container,false)
-        initLentalData()
-        initLentalAdapter()
+/*        initLentalData()
+        initLentalAdapter()*/
 
         return returnBinding.root
     }
 
-    private fun initLentalData() {
+/*    private fun initLentalData() {
         returnDataList.addAll(
             arrayListOf(
                 ReturnData("우산", "건구스(202512345)", "2025-01-01 19:00", "2025-01-15"),
@@ -48,5 +48,5 @@ class AdminReturnFragment : Fragment() {
                 false
             )
         }
-    }
+    }*/
 }
