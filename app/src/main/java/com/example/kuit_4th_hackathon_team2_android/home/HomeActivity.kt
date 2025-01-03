@@ -1,16 +1,12 @@
 package com.example.kuit_4th_hackathon_team2_android.home
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.kuit_4th_hackathon_team2_android.R
 import com.example.kuit_4th_hackathon_team2_android.admin.AdminFragment
 import com.example.kuit_4th_hackathon_team2_android.databinding.ActivityHomeBinding
 import com.example.kuit_4th_hackathon_team2_android.mypage.MyPageFragment
-import com.example.kuit_4th_hackathon_team2_android.reservation.ReservationFragment
+import com.example.kuit_4th_hackathon_team2_android.reservation.reservation.ReservationFragment
 
 class HomeActivity : AppCompatActivity() {
 
