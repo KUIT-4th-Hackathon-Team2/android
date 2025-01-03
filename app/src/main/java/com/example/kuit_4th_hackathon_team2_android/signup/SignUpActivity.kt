@@ -49,11 +49,22 @@ class SignUpActivity : AppCompatActivity() {
             }
             if (binding.etSignUpId.text.toString().isEmpty()) {
                 canSignup = false
-                binding.tvSignUpIdWarning.text = "아이디를 입력하세요."
+                binding.tvSignUpIdWarning.text = "학번을 입력하세요."
                 binding.tvSignUpIdWarning.visibility = View.VISIBLE
             } else {
                 binding.tvSignUpIdWarning.visibility = View.INVISIBLE
             }
+            if(binding.etSignUpId.text.toString().isNotEmpty()){
+                try{
+                    binding.etSignUpId.text.toString().toLong()
+                    binding.tvSignUpIdWarning.visibility = View.INVISIBLE
+                }
+                catch (e: NumberFormatException) {
+                    binding.tvSignUpIdWarning.text = "학번을 숫자로 입력하세요."
+                    binding.tvSignUpIdWarning.visibility = View.VISIBLE
+                }
+            }
+
 
             if (binding.etSignUpPassword.text.toString() == binding.etSignUpPasswordCheck.text.toString()) {
                 binding.tvSignUpPasswordWarning.visibility = View.INVISIBLE
