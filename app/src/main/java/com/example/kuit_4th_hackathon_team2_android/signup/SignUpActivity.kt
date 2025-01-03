@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+
 import com.example.kuit_4th_hackathon_team2_android.databinding.ActivitySignUpBinding
 import com.example.kuit_4th_hackathon_team2_android.login.model.ResponseData
 import com.example.kuit_4th_hackathon_team2_android.login.model.UserData
