@@ -5,14 +5,24 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+
+import androidx.lifecycle.lifecycleScope
+
 import com.example.kuit_4th_hackathon_team2_android.retrofit.RetrofitObject
+
 import com.example.kuit_4th_hackathon_team2_android.databinding.ActivityLoginBinding
 import com.example.kuit_4th_hackathon_team2_android.home.HomeActivity
 import com.example.kuit_4th_hackathon_team2_android.login.model.LoginData
 import com.example.kuit_4th_hackathon_team2_android.login.model.ResponseData
+
+import com.example.kuit_4th_hackathon_team2_android.retrofit.LoginRequestData
+
+import kotlinx.coroutines.launch
+
 import com.example.kuit_4th_hackathon_team2_android.retrofit.Service.LoginService
 import com.example.kuit_4th_hackathon_team2_android.retrofit.SharedPreferencesHelper
 import com.example.kuit_4th_hackathon_team2_android.signup.SignUpActivity
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         val password = binding.etLoginPassword.text.toString()
         val service = RetrofitObject.retrofit.create(LoginService::class.java)
 
+
         val call = service.postLoginData(LoginData(id, password))
         call.enqueue(object : Callback<ResponseData> {
             override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
@@ -58,6 +69,7 @@ class MainActivity : AppCompatActivity() {
                     RetrofitObject.setCookie(cookieResult)
                     canLogin = true
 
+
                     val intent = Intent(this@MainActivity, HomeActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -70,6 +82,7 @@ class MainActivity : AppCompatActivity() {
                     binding.tvLoginWarning.visibility = View.VISIBLE
                 }
             }
+
 
             override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                 if (t is java.net.UnknownHostException) {

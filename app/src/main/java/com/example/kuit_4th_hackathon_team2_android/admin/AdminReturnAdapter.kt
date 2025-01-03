@@ -3,22 +3,25 @@ package com.example.kuit_4th_hackathon_team2_android.admin
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kuit_4th_hackathon_team2_android.admin.model.ReservationData
 import com.example.kuit_4th_hackathon_team2_android.admin.model.ReturnData
 import com.example.kuit_4th_hackathon_team2_android.databinding.ItemAdminReturnBinding
 
-class AdminReturnAdapter(private val itemList: List<ReturnData>) :
+class AdminReturnAdapter(
+    private val itemList: List<ReservationData>,
+    private val onDeleteClick : (ReservationData) -> Unit) :
     RecyclerView.Adapter<AdminReturnAdapter.ItemViewHolder>() {
     inner class ItemViewHolder(
         private val binding: ItemAdminReturnBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ReturnData) {
-            binding.tvAdminReturnItemName.text = item.product
-            binding.tvAdminReturnStudent.text = item.stdinfo
-            binding.tvAdminReturnLentalDate.text = item.lentalDate
-            binding.tvAdminReturnDate.text = item.returnDate
+        fun bind(item: ReservationData) {
+            binding.tvAdminReturnItemName.text = item.productName
+            binding.tvAdminReturnStudent.text = item.userName+" ("+item.studentNum+")"
+            binding.tvAdminReturnLentalDate.text = item.rentalTime
+            binding.tvAdminReturnDate.text = item.expirationTime
 
             binding.btnAdminReturn.setOnClickListener {
-                //TODO
+                onDeleteClick(item)
             }
         }
     }
@@ -36,4 +39,5 @@ class AdminReturnAdapter(private val itemList: List<ReturnData>) :
     override fun getItemCount(): Int {
         return itemList.size
     }
+
 }
