@@ -8,42 +8,69 @@ import com.example.kuit_4th_hackathon_team2_android.databinding.ItemUserReservat
 
 class ReservationRVAdapter(
     private val items : List<ReservationData>,
+    private val borrowItems : List<BorrowData>,
+    private val userReservationItems : List<ReservationData>,
     private val reservationClickListener : (ReservationData) -> Unit = {}
 ) : RecyclerView.Adapter<ReservationRVAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding : ItemUserReservationBinding) :
-            RecyclerView.ViewHolder(binding.root) {
-                fun bind(item : ReservationData) {
-                    binding.tvItemName.text = item.name
-                    val remainNumber = item.remainNumber
-                    val rentalPeriod = item.rentalPeriod
-                    binding.tvItemInfo.text = "대여 가능 수량 : $remainNumber / $rentalPeriod"
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item : ReservationData) {
+            binding.tvItemName.text = item.name
+            val remainNumber = item.remainNumber
+            val rentalPeriod = item.rentalPeriod
+            binding.tvItemInfo.text = "대여 가능 수량 : $remainNumber / $rentalPeriod"
 
-                    binding.tvItemAvailable.setOnClickListener {
+            binding.tvItemAvailable.setOnClickListener {
+                binding.tvItemAvailable.visibility = View.GONE
+                binding.tvItemReservation.visibility = View.VISIBLE
+                binding.tvItemInfo.text = "대여 가능 수량 : ${remainNumber - 1} / $rentalPeriod"
+                binding.tvItemBorrowedState.visibility = View.VISIBLE
+            }
+
+            binding.tvItemReservation.setOnClickListener {
+                binding.tvItemAvailable.visibility = View.VISIBLE
+                binding.tvItemReservation.visibility = View.GONE
+                binding.tvItemInfo.text = "대여 가능 수량 : $remainNumber / $rentalPeriod"
+                binding.tvItemBorrowedState.visibility = View.GONE
+            }
+
+            if(remainNumber == 0) {
+                binding.tvItemAvailable.visibility = View.GONE
+                binding.tvItemReservation.visibility = View.GONE
+                binding.tvItemStateDisavailable.visibility = View.VISIBLE
+            }
+
+            if (!borrowItems.isNullOrEmpty()) {
+                for (borrowItem in borrowItems) {
+                    if (borrowItem.productName.equals(item.name)) {
                         binding.tvItemAvailable.visibility = View.GONE
-                        binding.tvItemReservation.visibility = View.VISIBLE
-                        binding.tvItemInfo.text = "대여 가능 수량 : ${remainNumber - 1} / $rentalPeriod"
+                        binding.tvItemReservation.visibility = View.GONE
                         binding.tvItemBorrowedState.visibility = View.VISIBLE
-                    }
-
-                    binding.tvItemReservation.setOnClickListener {
-                        binding.tvItemAvailable.visibility = View.VISIBLE
-                        binding.tvItemReservation.visibility = View.GONE
-                        binding.tvItemInfo.text = "대여 가능 수량 : $remainNumber / $rentalPeriod"
-                        binding.tvItemBorrowedState.visibility = View.GONE
-                    }
-
-                    if(remainNumber == 0) {
-                        binding.tvItemAvailable.visibility = View.GONE
-                        binding.tvItemReservation.visibility = View.GONE
                         binding.tvItemStateDisavailable.visibility = View.VISIBLE
-                    }
-
-                    binding.root.setOnClickListener {
-                        reservationClickListener(item)
+                        binding.tvItemInfo.text = "대여 가능 수량 : ${remainNumber - 1} / $rentalPeriod"
                     }
                 }
             }
+
+            if (!userReservationItems.isNullOrEmpty()) {
+                for (userReservationItem in userReservationItems) {
+                    if (userReservationItem.name.equals(item.name)) {
+                        binding.tvItemAvailable.visibility = View.GONE
+                        binding.tvItemReservation.visibility = View.VISIBLE
+                        binding.tvItemBorrowedState.visibility = View.GONE
+                        binding.tvItemStateDisavailable.visibility = View.GONE
+                        binding.tvItemBorrowedState.visibility = View.VISIBLE
+                        binding.tvItemInfo.text = "대여 가능 수량 : ${remainNumber - 1} / $rentalPeriod"
+                    }
+                }
+            }
+
+            binding.root.setOnClickListener {
+                reservationClickListener(item)
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemUserReservationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
