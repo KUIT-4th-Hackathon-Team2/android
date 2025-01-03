@@ -12,6 +12,6 @@ interface AdminReturnService {
     @GET("rentals")
     fun getReturnItem(): Call<List<ReservationData>>
 
-    @DELETE("rentals")
-    fun removeItem(@Query("rentalId") rentalId:Int) : Call<Unit>
+    @DELETE("rentals/{rentalId}")
+    fun removeItem(@Path("rentalId") rentalId:Int) : Call<List<ReservationData>>
 }

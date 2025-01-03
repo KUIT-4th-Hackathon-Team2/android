@@ -90,17 +90,24 @@ class AdminReturnFragment : Fragment() {
 
         Log.d("Delete Request", "rentalId type: ${item.rentalId::class.java}")
 
-        call.enqueue(object : Callback<Unit> {
-            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+        call.enqueue(object : Callback<List<ReservationData>> {
+
+            override fun onResponse(
+                call: Call<List<ReservationData>>,
+                response: Response<List<ReservationData>>
+            ) {
                 if (response.isSuccessful) {
+                    val returnResponse = response.body()
                     Log.d("delete success", "Item deleted successfully")
-                    showReturnInfo(returnDataList) // UI 업데이트
+                    if(!returnResponse.isNullOrEmpty()){
+                    showReturnInfo(returnResponse) // UI 업데이트
+                        }
                 } else {
                     Log.e("delete fail", "Failed to delete item with code: ${response.code()}")
                 }
             }
 
-            override fun onFailure(call: Call<Unit>, t: Throwable) {
+            override fun onFailure(call: Call<List<ReservationData>>, t: Throwable) {
                 Log.e("delete failure", "Failed to delete item: ${t.message}")
             }
         })

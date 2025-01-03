@@ -10,15 +10,15 @@ import com.example.kuit_4th_hackathon_team2_android.databinding.ItemAdminLentalB
 import com.example.kuit_4th_hackathon_team2_android.databinding.ItemAdminProductBinding
 
 class AdminProductAdapter (
-    private val itemList: List<ReservationData>,
-    private val onProductClick: (ReservationData) -> Unit
+    private val itemList: List<ProductData>
+    //private val onProductClick: (ReservationData) -> Unit
 ) :
     RecyclerView.Adapter<AdminProductAdapter.ItemViewHolder>() {
     inner class ItemViewHolder(
         private val binding: ItemAdminProductBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ReservationData) {
-            binding.tvAdminProduct.text = item.productName
+        fun bind(item: ProductData) {
+            binding.tvAdminProduct.text = item.name
         }
     }
 
@@ -30,7 +30,7 @@ class AdminProductAdapter (
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(itemList[position])
         holder.itemView.setOnClickListener{
-            onProductClick(itemList[position])
+            //onProductClick(itemList[position])
         }
     }
 
