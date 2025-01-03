@@ -43,19 +43,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkingAccount() {
         var id: Long = 0L
-        try{
+        try {
             id = binding.etLoginId.text.toString().toLong()
-        }
-        catch (e: NumberFormatException) {
+        } catch (e: NumberFormatException) {
             Log.e("Login", "Invalid ID format: ${e.message}")
             binding.tvLoginWarning.visibility = View.VISIBLE
         }
         val password = binding.etLoginPassword.text.toString()
-        if(binding.etLoginId.text.toString().isNotEmpty()&&id!=0L){
+        if (binding.etLoginId.text.toString().isNotEmpty() && id != 0L) {
             val service = RetrofitObject.retrofit.create(LoginService::class.java)
             val call = service.postLoginData(LoginData(id, password))
             call.enqueue(object : Callback<ResponseData> {
-                override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
+                override fun onResponse(
+                    call: Call<ResponseData>,
+                    response: Response<ResponseData>
+                ) {
                     if (response.isSuccessful) {
                         val reservationResponse = response.body()
                         val cookie = response.headers().values("Set-Cookie")
@@ -89,9 +91,9 @@ class MainActivity : AppCompatActivity() {
                 }
 
 
-        }
-        )
+            }
+            )
 
+        }
     }
-}
     }
