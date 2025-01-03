@@ -5,7 +5,7 @@
     android:layout_height="159dp">
 
     <TextView
-        android:id="@+id/tv_admin_lental_item_name"
+        android:id="@+id/tv_admin_return_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -16,61 +16,63 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_admin_lental_info"
+        android:id="@+id/tv_admin_return_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="13dp"
         android:text="신청자 정보 : "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_admin_lental_item_name" />
+        app:layout_constraintTop_toBottomOf="@id/tv_admin_return_item_name" />
 
 
     <TextView
-        android:id="@+id/tv_admin_lental_student"
+        android:id="@+id/tv_admin_return_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:text="건구스(202512345)"
-        app:layout_constraintStart_toEndOf="@id/tv_admin_lental_info"
-        app:layout_constraintTop_toBottomOf="@id/tv_admin_lental_item_name" />
+        app:layout_constraintStart_toEndOf="@id/tv_admin_return_info"
+        app:layout_constraintTop_toBottomOf="@id/tv_admin_return_item_name" />
 
     <TextView
-        android:id="@+id/tv_admin_lental_info2"
+        android:id="@+id/tv_admin_return_info2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
         android:text="대여 일시 : "
-        app:layout_constraintStart_toStartOf="@id/tv_admin_lental_info"
-        app:layout_constraintTop_toBottomOf="@id/tv_admin_lental_info" />
+        app:layout_constraintStart_toStartOf="@id/tv_admin_return_info"
+        app:layout_constraintTop_toBottomOf="@id/tv_admin_return_info" />
 
     <TextView
+        android:id="@+id/tv_admin_return_lental_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
         android:text="2025-01-01 19:00"
-        app:layout_constraintStart_toEndOf="@id/tv_admin_lental_info2"
-        app:layout_constraintTop_toBottomOf="@id/tv_admin_lental_info" />
+        app:layout_constraintStart_toEndOf="@id/tv_admin_return_info2"
+        app:layout_constraintTop_toBottomOf="@id/tv_admin_return_info" />
 
     <TextView
-        android:id="@+id/tv_admin_lental_info3"
+        android:id="@+id/tv_admin_return_info3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
         android:text="반납 기한 : "
-        app:layout_constraintStart_toStartOf="@id/tv_admin_lental_info2"
-        app:layout_constraintTop_toBottomOf="@id/tv_admin_lental_info2" />
+        app:layout_constraintStart_toStartOf="@id/tv_admin_return_info2"
+        app:layout_constraintTop_toBottomOf="@id/tv_admin_return_info2" />
 
     <TextView
+        android:id="@+id/tv_admin_return_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
         android:text="2025-01-08"
-        app:layout_constraintStart_toEndOf="@id/tv_admin_lental_info3"
-        app:layout_constraintTop_toBottomOf="@id/tv_admin_lental_info2" />
+        app:layout_constraintStart_toEndOf="@id/tv_admin_return_info3"
+        app:layout_constraintTop_toBottomOf="@id/tv_admin_return_info2" />
 
     <Button
-        android:id="@+id/btn_admin_lental"
+        android:id="@+id/btn_admin_return"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
@@ -79,7 +81,7 @@
         android:backgroundTint="#03C02C"
         android:gravity="center"
         android:padding="4dp"
-        android:text="대여\n확정"
+        android:text="반납\n확정"
         android:textColor="@android:color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
