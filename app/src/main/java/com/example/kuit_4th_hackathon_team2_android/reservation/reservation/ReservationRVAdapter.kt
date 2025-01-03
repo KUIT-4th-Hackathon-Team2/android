@@ -1,6 +1,5 @@
-package com.example.kuit_4th_hackathon_team2_android.reservation
+package com.example.kuit_4th_hackathon_team2_android.reservation.reservation
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
