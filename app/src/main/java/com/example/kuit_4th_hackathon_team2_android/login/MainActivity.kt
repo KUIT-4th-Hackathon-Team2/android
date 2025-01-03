@@ -9,9 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.kuit_4th_hackathon_team2_android.databinding.ActivityLoginBinding
 import com.example.kuit_4th_hackathon_team2_android.home.HomeActivity
-import com.example.kuit_4th_hackathon_team2_android.retrofit.LoginResponseData
-import com.example.kuit_4th_hackathon_team2_android.retrofit.RetrofitObject
-import com.example.kuit_4th_hackathon_team2_android.retrofit.Service.LoginService
 import com.example.kuit_4th_hackathon_team2_android.retrofit.LoginRequestData
 import com.example.kuit_4th_hackathon_team2_android.signup.SignUpActivity
 import kotlinx.coroutines.launch

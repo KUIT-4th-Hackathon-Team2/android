@@ -9,11 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.kuit_4th_hackathon_team2_android.databinding.ActivitySignUpBinding
-import com.example.kuit_4th_hackathon_team2_android.retrofit.LoginResponseData
-import com.example.kuit_4th_hackathon_team2_android.retrofit.RetrofitObject
-import com.example.kuit_4th_hackathon_team2_android.retrofit.Service.LoginService
-import com.example.kuit_4th_hackathon_team2_android.retrofit.ServicePool
-import com.example.kuit_4th_hackathon_team2_android.retrofit.UserData
+
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
