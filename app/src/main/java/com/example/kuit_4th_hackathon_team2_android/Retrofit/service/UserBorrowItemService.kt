@@ -5,6 +5,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface UserBorrowItemService {
-    @GET("borrow")
+    @GET("rentals/user/{userId}")
     fun getUserBorrowItems() : Call<List<BorrowData>>
 }

@@ -5,18 +5,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface ReservationItemService {
-    @GET("reservation")
+    @GET("products")
     fun getReservationItems(): Call<List<ReservationData>>
-
-
-//    @POST("reservation")
-//    fun postReservationItem(
-//        @Body reservationData: ReservationData
-//    ): Call<ReservationData>
-//
-//
-//    @DELETE("reservation/{id}")
-//    fun deleteReservationItem(
-//        @Path("id") id: String,
-//    ): Call<Void>
 }
