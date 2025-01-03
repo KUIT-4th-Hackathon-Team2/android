@@ -4,3 +4,4 @@ data class LoginData(
     val studentNum: Long,
     val password: String
 )
+
